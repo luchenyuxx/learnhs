@@ -36,3 +36,39 @@ testWhatWentWrong :: (String -> [LogMessage])
                   -> IO [String]
 testWhatWentWrong parse whatWentWrong file
   = whatWentWrong . parse <$> readFile file
+
+-- my part
+isNumeric :: String -> Bool
+isNumeric s = case reads s :: [(Int, String)] of
+  [(_, "")] -> True
+  _ -> False
+
+parseMessage :: String -> LogMessage
+parseMessage msg = (par . splitAt 2 . words) msg where
+  par (["E", n], xs) | isNumeric $ head xs = LogMessage (Error (read n::Int)) (read (head xs)::Int) (unwords $ tail xs)
+  par (["I", n], xs) | isNumeric n = LogMessage Info (read n::Int) (unwords xs)
+  par (["W", n], xs) | isNumeric n = LogMessage Warning (read n::Int) (unwords xs)
+  par _ = Unknown msg
+
+parse :: String -> [LogMessage]
+parse = map parseMessage . lines
+
+insert :: LogMessage -> MessageTree -> MessageTree
+insert (Unknown _) m = m
+insert l Leaf = Node Leaf l Leaf
+insert l@(LogMessage _ t _) (Node lt lm@(LogMessage _ t2 _) rt)
+  | t > t2 = Node lt lm (insert l rt)
+  | t <= t2 = Node (insert l lt) lm rt
+
+build :: [LogMessage] -> MessageTree
+build = foldr insert Leaf
+
+inOrder :: MessageTree -> [LogMessage]
+inOrder Leaf = []
+inOrder (Node left mess right) = (inOrder left) ++ [mess] ++ (inOrder right)
+message :: LogMessage -> String
+message (LogMessage _ _ s) = s
+whatWentWrong :: [LogMessage] -> [String]
+whatWentWrong = map message . filter (\l -> case l of
+  LogMessage (Error s) _ _ | s > 50 -> True
+  _ -> False) . inOrder . build

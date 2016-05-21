@@ -3,7 +3,7 @@ module Main where
 import Lib
 
 main :: IO ()
-main = print (hanoi 5 "a" "b" "c")
+main = print "hello"
 
   {-putStrLn "input?"
   >> getLine
