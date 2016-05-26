@@ -1,6 +1,5 @@
 module Lib
-    ( someFunc
-    ) where
+  where
 
 someFunc :: Integer -> Integer
 someFunc n = sumDigits(doubleEveryOther (toDigits n))
@@ -35,3 +34,11 @@ sumDigits (x:[]) = sumDigit x
 sumDigits (x:xs) = (sumDigit x) + (sumDigits xs)
 
 validate n = (sumDigits (doubleEveryOther (toDigits n))) `mod` 10 == 0
+
+fun1' :: [Integer] -> Integer
+fun1' = foldr (\b a -> b * (a-2)) 1 . filter even
+
+fun2' :: Integer -> Integer
+fun2' = sum . filter even . takeWhile (/=1) . iterate (\n -> case (even n) of
+  True -> n `div` 2
+  False -> 3*n+1)
