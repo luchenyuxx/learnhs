@@ -5,13 +5,13 @@ module Calc where
 import Parser
 import StackVM
 
-eval :: ExprT -> Integer
-eval (Lit i) = i
-eval (Add l r) = (eval l) + (eval r)
-eval (Mul l r) = (eval l) * (eval r)
-
-evalStr :: String -> Maybe Integer
-evalStr = fmap eval . parseExp lit add mul
+-- eval :: ExprT -> Integer
+-- eval (Lit i) = i
+-- eval (Add l r) = (eval l) + (eval r)
+-- eval (Mul l r) = (eval l) * (eval r)
+--
+-- evalStr :: String -> Maybe Integer
+-- evalStr = fmap eval . parseExp lit add mul
 
 class Expr a where
   lit :: Integer -> a
@@ -55,6 +55,11 @@ instance Expr Program where
   lit i= [PushI i]
   add a b = a ++ b ++ [Add]
   mul a b = a ++ b ++ [Mul]
+
+instance Expr String where
+  lit i = "Integer " ++ show i
+  add a b = "add the result of " ++ a ++ " and the result of " ++ b
+  mul a b = "multiply the result of " ++ a ++ " and the result of " ++ b
 
 testExp :: Expr a => Maybe a
 testExp = parseExp lit add mul "(3 * -4) + 5"
