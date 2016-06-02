@@ -80,9 +80,10 @@ intPair = (\a _ b -> [a,b]) <$> posInt <*> char ' ' <*> posInt
 
 instance Alternative Parser where
   empty = Parser (\_ -> Nothing)
-  p1 <|> p2 = Parser (\s -> case runParser p1 s of
-    Nothing -> runParser p2 s
-    r@(Just _) -> r)
+  -- p1 <|> p2 = Parser (\s -> case runParser p1 s of
+  --   Nothing -> runParser p2 s
+  --   r@(Just _) -> r)
+  Parser p1 <|> Parser p2 = Parser $ liftA2 (<|>) p1 p2
 
 intOrUppercase :: Parser ()
 intOrUppercase = (\_ -> ()) <$> posInt <|> (\_ -> ()) <$> satisfy isUpper
