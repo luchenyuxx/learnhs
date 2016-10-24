@@ -41,10 +41,13 @@ invade b@(Battlefield a d) | a < 2 || d <= 0 = return b
 
 successProb :: Battlefield -> Rand StdGen Double
 successProb b = allCases b >>= \bs ->
-                return $ fromIntegral (foldr (\a b -> b + (attackerWin a)) 0 bs) / 1000
+                return $ fromIntegral (foldr (\a b -> b + (attackerWin a)) 0 bs) / times
+
+times :: Number a => a
+times = 1000
 
 allCases :: Battlefield -> Rand StdGen [Battlefield]
-allCases = replicateM 1000 . invade
+allCases = replicateM times . invade
 
 attackerWin :: Battlefield -> Int
 attackerWin (Battlefield a d) | a > 0 && d == 0 = 1
@@ -84,3 +87,6 @@ sortD = reverse . sort
 
 testBattlefield :: Battlefield
 testBattlefield = Battlefield 5 10
+
+evalSuccessProb :: Int -> Int -> IO Double
+evalSuccessProb a d = evalRandIO $ successProb $ Battlefield a d
