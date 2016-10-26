@@ -1,35 +1,34 @@
 module HeapSort where
 
-import Control.Monad (liftM2)
-import Data.Maybe (fromJust)
+import           Control.Monad (liftM2)
+import           Data.Maybe    (fromJust, isNothing)
 
 heapSort :: Ord a => [a] -> [a]
-heapSort l = sortHeap $ makeHeap l []
+heapSort l = sortHeap $ makeHeap l
 
 sortHeap :: Ord a => [a] -> [a]
 sortHeap [] = []
-sortHeap (a:[]) = [a]
-sortHeap (a:as) = (sortHeap $ checkRoot $ promoteLast as) ++ [a]
+sortHeap [a] = [a]
+sortHeap (a:as) = sortHeap (checkRoot $ promoteLast as) ++ [a]
 
 promoteLast :: [a] -> [a]
 promoteLast [] = []
-promoteLast l = last l : (withoutLast l) 
+promoteLast l = last l : withoutLast l
 
 withoutLast :: [a] -> [a]
 withoutLast [] = []
-withoutLast (a:[]) = []
-withoutLast (a:as) = a:(withoutLast as)
+withoutLast [a] = []
+withoutLast (a:as) = a:withoutLast as
 
-makeHeap :: Ord a => [a] -> [a] -> [a]
-makeHeap [] l = l
-makeHeap (a:as) l = makeHeap as $ checkLast $ putToLast a l
+makeHeap :: Ord a => [a] -> [a]
+makeHeap = foldl (\l a -> checkLast $ putToLast a l) []
 
 checkRoot :: Ord a => [a] -> [a]
 checkRoot [] = []
 checkRoot l = fromJust $ checkChild l 0
 
 checkChild :: Ord a => [a] -> Integer -> Maybe [a]
-checkChild l rootIndex | greaterHeapChildIndex l rootIndex == Nothing = Just l
+checkChild l rootIndex | isNothing $ greaterHeapChildIndex l rootIndex = Just l
                        | otherwise = do
                            stgc <- isSmallerThanGreaterChild l rootIndex
                            if stgc then do ci <- greaterHeapChildIndex l rootIndex
@@ -47,15 +46,15 @@ greaterChild :: Ord a => [a] -> Integer -> Maybe a
 greaterChild l rootIndex = greaterHeapChildIndex l rootIndex >>= get l
 
 greaterHeapChildIndex :: Ord a => [a] -> Integer -> Maybe Integer
-greaterHeapChildIndex l i | i<0 || i> (lastIndex l) || (2*i+1) >(lastIndex l) = Nothing
-greaterHeapChildIndex l i | (2*i+2)>(lastIndex l) = Just (2*i+1)
+greaterHeapChildIndex l i | i<0 || i> lastIndex l || (2*i+1) >lastIndex l = Nothing
+greaterHeapChildIndex l i | (2*i+2)>lastIndex l = Just (2*i+1)
 greaterHeapChildIndex l i = do
   cl <- get l (2*i+1)
   cr <- get l (2*i+2)
-  if cl>cr then Just (2*i+1) else Just (2*i+2)                                
-  
+  if cl>cr then Just (2*i+1) else Just (2*i+2)
+
 lastIndex :: [a] -> Integer
-lastIndex l = (length' l) -1
+lastIndex l = length' l -1
 
 checkLast :: Ord a => [a] -> [a]
 checkLast [] = []
@@ -72,8 +71,7 @@ checkParent l childIndex | childIndex == 0 = Just l
                              else Just l
 
 putToLast :: Ord a => a -> [a] -> [a]
-putToLast a [] = [a]
-putToLast a (b:bs) = b:(putToLast a bs)
+putToLast a = foldr (:) [a]
 
 isLargerThanHeapParent :: Ord a => [a] -> Integer -> Maybe Bool
 isLargerThanHeapParent l childIndex = do
@@ -84,7 +82,7 @@ isLargerThanHeapParent l childIndex = do
 swapWithHeapParent :: Ord a => [a] -> Integer -> Maybe [a]
 swapWithHeapParent l childIndex = do
   pi <- parentIndex childIndex
-  swap l pi childIndex 
+  swap l pi childIndex
 
 swap :: [a] -> Integer -> Integer -> Maybe [a]
 swap l i1 i2 | i1==i2 = Just l
@@ -96,14 +94,14 @@ swap l i1 i2 | i1==i2 = Just l
 
 parentIndex :: Integer -> Maybe Integer
 parentIndex i | i < 0 = Nothing
-                 | otherwise = Just $ floor $ (fromInteger (i-1)) / 2
+                 | otherwise = Just $ floor $ fromInteger (i-1) / 2
 
 parent :: Ord a => [a] -> Integer -> Maybe a
 parent l i = parentIndex i >>= get l
 
 length' :: [a] -> Integer
 length' [] = 0
-length' (a:as) = (length' as) + 1
+length' (a:as) = length' as + 1
 
 get :: [a] -> Integer -> Maybe a
 get [] _ = Nothing
