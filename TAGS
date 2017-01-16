@@ -1,0 +1,519 @@
+
+./app/Main.hs,52
+module Main Main0,1
+main main4,5
+main main5,6
+
+./Setup.hs,15
+main main1,2
+
+./src/AParser.hs,561
+module AParser AParser4,5
+newtype Parser Parser14,15
+newtype Parser a = Parser Parser14,15
+newtype Parser a = Parser { runParser runParser14,15
+satisfy satisfy20,21
+satisfy satisfy21,22
+char char32,33
+char char33,34
+posInt posInt48,49
+posInt posInt49,50
+first first59,60
+first first60,61
+instance instance62,63
+abParser abParser71,72
+abParser abParser72,73
+abParser_ abParser_74,75
+abParser_ abParser_75,76
+intPair intPair77,78
+intPair intPair78,79
+intOrUppercase intOrUppercase87,88
+intOrUppercase intOrUppercase88,89
+
+./src/Buffer.hs,206
+class Buffer Buffer5,6
+class Buffer Buffer5,6
+  toString toString8,9
+  fromString fromString11,12
+  line line15,16
+  replaceLine replaceLine20,21
+  numLines numLines23,24
+  value value27,28
+
+./src/Calc.hs,444
+module Calc Calc1,2
+class Expr Expr15,16
+class Expr Expr15,16
+  lit lit16,17
+  add, mul mul17,18
+  add,add17,18
+class HasVars HasVars19,20
+class HasVars HasVars19,20
+  var var20,21
+instance instance29,30
+newtype MinMax MinMax40,41
+newtype MinMax  = MinMax MinMax40,41
+newtype Mod7 Mod741,42
+newtype Mod7    = Mod7 Mod741,42
+testExp testExp63,64
+testExp testExp64,65
+compile compile66,67
+compile compile67,68
+
+./src/Editor.hs,1142
+data Command Command20,21
+data Command = ViewView20,21
+             | EditEdit21,22
+             | Load Load22,23
+             | Line Line23,24
+             | NextNext24,25
+             | PrevPrev25,26
+             | QuitQuit26,27
+             | HelpHelp27,28
+             | NoopNoop28,29
+commands commands31,32
+commands commands32,33
+newtype Editor Editor36,37
+newtype Editor b a = Editor Editor36,37
+runEditor runEditor39,40
+runEditor runEditor40,41
+getCurLine getCurLine42,43
+getCurLine getCurLine43,44
+setCurLine setCurLine45,46
+setCurLine setCurLine46,47
+onBuffer onBuffer48,49
+onBuffer onBuffer49,50
+getBuffer getBuffer51,52
+getBuffer getBuffer52,53
+modBuffer modBuffer54,55
+modBuffer modBuffer55,56
+io io57,58
+io io58,59
+readMay readMay62,63
+readMay readMay63,64
+editor editor69,70
+editor editor70,71
+prompt prompt75,76
+prompt prompt76,77
+getCommand getCommand80,81
+getCommand getCommand81,82
+doCommand doCommand90,91
+doCommand doCommand91,92
+inBuffer inBuffer136,137
+inBuffer inBuffer137,138
+modCurLine modCurLine141,142
+modCurLine modCurLine142,143
+
+./src/Elevator.hs,824
+data Elevator Elevator2,3
+data Elevator = Elev Elev2,3
+data Elevator = Elev {eId:eId2,3
+data Elevator = Elev {eId::Integer, floorNumber:floorNumber2,3
+data Elevator = Elev {eId::Integer, floorNumber::Integer, goalFloorNumber:goalFloorNumber2,3
+data PickupRequest PickupRequest4,5
+data PickupRequest = PR PR4,5
+data PickupRequest = PR {floor:floor4,5
+data PickupRequest = PR {floor::Integer, direction:direction4,5
+type ElevatorSystem ElevatorSystem5,6
+status status7,8
+status status8,9
+sameId sameId10,11
+sameId sameId11,12
+update update14,15
+update update15,16
+stepE stepE19,20
+stepE stepE20,21
+step step24,25
+step step25,26
+isIdle isIdle27,28
+isIdle isIdle28,29
+receiveRequest receiveRequest30,31
+receiveRequest receiveRequest31,32
+pickup pickup37,38
+pickup pickup38,39
+
+./src/ElevatorPlus.hs,537
+module ElevatorPlusElevatorPlus0,1
+class Elevator Elevator4,5
+class Elevator Elevator4,5
+  floor floor5,6
+  identity identity6,7
+  goalFloor goalFloor7,8
+  stepE stepE8,9
+  isIdle isIdle9,10
+  sameId sameId10,11
+class PickupRequest PickupRequest12,13
+class PickupRequest PickupRequest12,13
+  floor floor13,14
+  direction direction14,15
+class ElevatorSystem ElevatorSystem16,17
+  pickup :: PickupRequest p => es es20,21
+  status status17,18
+  update update18,19
+  step step19,20
+  pickup pickup20,21
+
+./src/Employee.hs,418
+type Name Name5,6
+type Fun Fun9,10
+data Employee Employee12,13
+data Employee = Emp Emp12,13
+data Employee = Emp { empName empName12,13
+data Employee = Emp { empName :: Name, empFun empFun12,13
+testCompany testCompany16,17
+testCompanytestCompany17,18
+testCompany2 testCompany231,32
+testCompany2testCompany232,33
+data GuestList GuestList47,48
+data GuestList = GL GL47,48
+instance instance50,51
+
+./src/ExprT.hs,100
+data ExprT ExprT2,3
+data ExprT = Lit Lit2,3
+           | Add Add3,4
+           | Mul Mul4,5
+
+./src/Fibonacci.hs,594
+module Fibonacci Fibonacci0,1
+fib fib2,3
+fib fib3,4
+fibs1 fibs17,8
+fibs1 fibs18,9
+fibs2 fibs210,11
+fibs2 fibs211,12
+data Stream Stream13,14
+data Stream a = Cons Cons13,14
+instance instance14,15
+streamToList streamToList17,18
+streamToList streamToList18,19
+streamRepeat streamRepeat20,21
+streamRepeat streamRepeat21,22
+streamMap streamMap23,24
+streamMap streamMap24,25
+streamFromSeed streamFromSeed26,27
+streamFromSeed streamFromSeed27,28
+nats nats29,30
+nats nats30,31
+interleaveStreams interleaveStreams32,33
+interleaveStreams interleaveStreams33,34
+
+./src/Golf.hs,233
+module GolfGolf0,1
+skips skips4,5
+skips skips5,6
+localMaxima localMaxima7,8
+localMaxima localMaxima8,9
+histogram histogram12,13
+histogram histogram13,14
+countElement countElement16,17
+countElement countElement17,18
+
+./src/Hanoi.hs,98
+module HanoiHanoi0,1
+type Peg Peg7,8
+type Move Move8,9
+hanoi hanoi9,10
+hanoi hanoi11,12
+
+./src/HeapSort.hs,1372
+module HeapSort HeapSort0,1
+heapSort heapSort5,6
+heapSort heapSort6,7
+sortHeap sortHeap8,9
+sortHeap sortHeap9,10
+promoteLast promoteLast13,14
+promoteLast promoteLast14,15
+withoutLast withoutLast17,18
+withoutLast withoutLast18,19
+makeHeap makeHeap22,23
+makeHeap makeHeap23,24
+checkRoot checkRoot25,26
+checkRoot checkRoot26,27
+checkChild checkChild29,30
+checkChild checkChild30,31
+isSmallerThanGreaterChild isSmallerThanGreaterChild38,39
+isSmallerThanGreaterChild isSmallerThanGreaterChild39,40
+greaterChild greaterChild44,45
+greaterChild greaterChild45,46
+greaterHeapChildIndex greaterHeapChildIndex47,48
+greaterHeapChildIndex greaterHeapChildIndex48,49
+lastIndex lastIndex55,56
+lastIndex lastIndex56,57
+checkLast checkLast58,59
+checkLast checkLast59,60
+checkParent checkParent62,63
+checkParent checkParent63,64
+putToLast putToLast72,73
+putToLast putToLast73,74
+isLargerThanHeapParent isLargerThanHeapParent75,76
+isLargerThanHeapParent isLargerThanHeapParent76,77
+swapWithHeapParent swapWithHeapParent81,82
+swapWithHeapParent swapWithHeapParent82,83
+swap swap86,87
+swap swap87,88
+parentIndex parentIndex94,95
+parentIndex parentIndex95,96
+parent parent98,99
+parent parent99,100
+length' length'101,102
+length' length'102,103
+get get105,106
+get get106,107
+set set111,112
+set set112,113
+
+./src/JoinList.hs,403
+data JoinList JoinList6,7
+data JoinList m a = EmptyEmpty6,7
+                 | Single Single7,8
+                 | Append Append8,9
+tag tag11,12
+tag tag12,13
+(+++)+++16,17
+a a17,18
+getSized getSized19,20
+getSized getSized20,21
+sizeJ sizeJ22,23
+sizeJ sizeJ23,24
+indexJ indexJ25,26
+indexJ indexJ26,27
+dropJ dropJ34,35
+dropJ dropJ35,36
+takeJ takeJ40,41
+takeJ takeJ41,42
+
+./src/Lib.hs,580
+module LibLib0,1
+someFunc someFunc3,4
+someFunc someFunc4,5
+toDigits toDigits8,9
+toDigitsRev toDigitsRev9,10
+doubleEveryOther doubleEveryOther10,11
+doubleEveryOtherRev doubleEveryOtherRev11,12
+sumDigits sumDigits12,13
+sumDigit sumDigit13,14
+validate validate14,15
+toDigitsRev toDigitsRev16,17
+toDigits toDigits21,22
+doubleEveryOtherRev doubleEveryOtherRev23,24
+doubleEveryOther doubleEveryOther27,28
+sumDigit sumDigit29,30
+sumDigits sumDigits31,32
+validate validate35,36
+fun1' fun1'37,38
+fun1' fun1'38,39
+fun2' fun2'40,41
+fun2' fun2'41,42
+
+./src/Log.hs,963
+module Log Log2,3
+data MessageType MessageType6,7
+data MessageType = InfoInfo6,7
+                 | WarningWarning7,8
+                 | Error Error8,9
+type TimeStamp TimeStamp11,12
+data LogMessage LogMessage13,14
+data LogMessage = LogMessage LogMessage13,14
+                | Unknown Unknown14,15
+data MessageTree MessageTree17,18
+data MessageTree = LeafLeaf17,18
+                 | Node Node18,19
+testParse testParse23,24
+testParse testParse27,28
+testWhatWentWrong testWhatWentWrong32,33
+testWhatWentWrong testWhatWentWrong36,37
+isNumeric isNumeric40,41
+isNumeric isNumeric41,42
+parseMessage parseMessage45,46
+parseMessage parseMessage46,47
+parse parse52,53
+parse parse53,54
+insert insert55,56
+insert insert56,57
+build build62,63
+build build63,64
+inOrder inOrder65,66
+inOrder inOrder66,67
+message message68,69
+message message69,70
+whatWentWrong whatWentWrong70,71
+whatWentWrong whatWentWrong71,72
+
+./src/Parser.hs,717
+newtype State State13,14
+newtype State s r = State State13,14
+data Expr Expr16,17
+data Expr = Const Const16,17
+          | Add Add17,18
+          | Mul Mul18,19
+instance instance21,22
+type Parser Parser37,38
+type Parser a a37,38
+digit digit40,41
+digit digit41,42
+num num48,49
+num num49,50
+space space53,54
+space space54,55
+eatSpace eatSpace61,62
+eatSpace eatSpace62,63
+char char65,66
+char char66,67
+op op72,73
+op op73,74
+eof eof76,77
+eof eof77,78
+parseExpr parseExpr83,84
+parseExpr parseExpr84,85
+execParser execParser91,92
+execParser execParser92,93
+evalParser evalParser95,96
+evalParser evalParser96,97
+parseExp parseExp100,101
+parseExp parseExp101,102
+
+./src/Party.hs,412
+module Party Party0,1
+glCons glCons6,7
+glCons glCons7,8
+instance instance9,10
+moreFun moreFun13,14
+moreFun moreFun14,15
+treeFold treeFold16,17
+treeFold treeFold17,18
+combineGLs combineGLs19,20
+combineGLs combineGLs20,21
+nextLevel nextLevel22,23
+nextLevel nextLevel23,24
+maxFun maxFun25,26
+maxFun maxFun26,27
+format format28,29
+format format29,30
+main main33,34
+main main34,35
+
+./src/Risk.hs,1434
+module Risk Risk2,3
+newtype DieValue DieValue11,12
+newtype DieValue = DV DV11,12
+newtype DieValue = DV { unDV unDV11,12
+first first14,15
+first first15,16
+instance instance17,18
+die die21,22
+die die22,23
+type Army Army27,28
+data Battlefield Battlefield29,30
+data Battlefield = Battlefield Battlefield29,30
+data Battlefield = Battlefield { attackers attackers29,30
+data Battlefield = Battlefield { attackers :: Army, defenders defenders29,30
+battle battle32,33
+battle battle33,34
+invade invade37,38
+invade invade38,39
+successProb successProb41,42
+successProb successProb42,43
+times times45,46
+times times46,47
+allCases allCases48,49
+allCases allCases49,50
+attackerWin attackerWin51,52
+attackerWin attackerWin52,53
+rollN rollN55,56
+rollN rollN56,57
+attackerN attackerN58,59
+attackerN attackerN59,60
+defenderN defenderN63,64
+defenderN defenderN64,65
+attackerRoll attackerRoll68,69
+attackerRoll attackerRoll69,70
+defenderRoll defenderRoll71,72
+defenderRoll defenderRoll72,73
+calculateRollResults calculateRollResults74,75
+calculateRollResults calculateRollResults75,76
+comparePair comparePair77,78
+comparePair comparePair78,79
+plusP plusP81,82
+plusP plusP82,83
+sortD sortD84,85
+sortD sortD85,86
+testBattlefield testBattlefield87,88
+testBattlefield testBattlefield88,89
+evalSuccessProb evalSuccessProb90,91
+evalSuccessProb evalSuccessProb91,92
+
+./src/Scrabble.hs,29
+module ScrabbleScrabble0,1
+
+./src/SExpr.hs,504
+zeroOrMore zeroOrMore14,15
+zeroOrMore zeroOrMore15,16
+oneOrMore oneOrMore17,18
+oneOrMore oneOrMore18,19
+spaces spaces24,25
+spaces spaces25,26
+ident ident27,28
+ident ident28,29
+type Ident Ident37,38
+data Atom Atom40,41
+data Atom = N N40,41
+data Atom = N Integer | I I40,41
+data SExpr SExpr44,45
+data SExpr = A A44,45
+           | Comb Comb45,46
+atom atom48,49
+atom atom49,50
+withP withP51,52
+withP withP52,53
+parseSExpr parseSExpr54,55
+parseSExpr parseSExpr55,56
+
+./src/Sized.hs,190
+newtype Size Size5,6
+newtype Size = Size Size5,6
+getSize getSize8,9
+getSize getSize9,10
+class Sized Sized11,12
+class Sized Sized11,12
+  size size12,13
+instance instance14,15
+
+./src/StackVM.hs,675
+module StackVM StackVM0,1
+data StackVal StackVal4,5
+data StackVal = IVal IVal4,5
+data StackVal = IVal Integer | BVal BVal4,5
+data StackVal = IVal Integer | BVal Bool | Void Void4,5
+data StackExp StackExp7,8
+data StackExp = PushI PushI7,8
+              | PushB PushB8,9
+              | AddAdd9,10
+              | MulMul10,11
+              | AndAnd11,12
+              | OrOr12,13
+type Stack Stack15,16
+type Program Program16,17
+stackVM stackVM20,21
+stackVM stackVM21,22
+errType errType23,24
+errType errType24,25
+errUnderflow errUnderflow26,27
+errUnderflow errUnderflow27,28
+execute execute30,31
+execute execute31,32
+test test57,58
+
+./src/StringBufEditor.hs,37
+module Main Main0,1
+main main5,6
+
+./src/StringBuffer.hs,115
+module StringBuffer StringBuffer1,2
+instance instance7,8
+safeIndex safeIndex17,18
+safeIndex safeIndex18,19
+
+./test/Spec.hs,30
+main main0,1
+main main1,2

@@ -66,7 +66,7 @@ instance Functor Parser where
 instance Applicative Parser where
   pure a = Parser (\s -> Just (a, s))
   p1 <*> p2 = Parser (\s -> case runParser p1 s of
-    Nothing -> Nothing
+    Nothing      -> Nothing
     Just (f, s2) -> first f <$> runParser p2 s2)
 
 abParser ::Parser (Char, Char)

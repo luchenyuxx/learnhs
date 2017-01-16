@@ -4,9 +4,9 @@
 
 module SExpr where
 
-import AParser
-import Control.Applicative
-import Data.Char
+import           AParser
+import           Control.Applicative
+import           Data.Char
 
 ------------------------------------------------------------
 --  1. Parsing repetitions
@@ -55,3 +55,4 @@ withP p = char '(' *> p <* char ')'
 parseSExpr :: Parser SExpr
 parseSExpr = spaces *> sexpr <* spaces where
   sexpr = liftA A atom <|> liftA Comb (withP $ oneOrMore parseSExpr)
+
